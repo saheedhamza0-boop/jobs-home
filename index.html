@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123b2d">
+  <meta name="description" content="Find jobs, explore remote opportunities, and discover your next career opportunity with Jobs Home.">
+  <title>Jobs Home | Find Your Next Opportunity</title>
+
+  <style>
+    :root {
+      --green: #126b4f;
+      --dark-green: #123b2d;
+      --light-green: #e9f5ef;
+      --orange: #ffb547;
+      --text: #202923;
+      --muted: #68746c;
+      --border: #e2e9e4;
+      --white: #ffffff;
+      --background: #f7f9f7;
+      --shadow: 0 8px 28px rgba(20, 55, 38, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--green);
+      font-weight: 800;
+      font-size: 22px;
+    }
+
+    .logo-name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+    }
+
+    .logo-name span {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      text-align: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--dark-green);
+    }
+
+    /* Hero */
+
+    .hero {
+      background:
+        radial-gradient(circle at 90% 15%, rgba(255,181,71,0.14), transparent 28%),
+        linear-gradient(130deg, #123b2d 0%, #185b43 100%);
+      color: white;
+      padding: 76px 0 88px;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 790px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 23px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .hero h1 {
+      font-size: clamp(35px, 6vw, 60px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero-description {
+      max-width: 610px;
+      margin: auto;
+      color: #dcebe3;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    /* Search */
+
+    .search-panel {
+      margin: 35px auto 0;
+      padding: 10px;
+      max-width: 790px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr auto;
+      gap: 8px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.16);
+    }
+
+    .search-field {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      min-width: 0;
+    }
+
+    .search-field-icon {
+      font-size: 20px;
+      color: var(--green);
+    }
+
+    .search-field input,
+    .search-field select {
+      border: 0;
+      outline: 0;
+      width: 100%;
+      min-width: 0;
+      color: var(--text);
+      background: white;
+      font-size: 14px;
+    }
+
+    .search-field select {
+      cursor: pointer;
+    }
+
+    .search-button {
+      padding: 15px 24px;
+      white-space: nowrap;
+    }
+
+    .popular-searches {
+      margin-top: 23px;
+      color: #dcebe3;
+      font-size: 13px;
+    }
+
+    .popular-searches a {
+      display: inline-block;
+      margin: 5px 3px;
+      padding: 5px 11px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      color: white;
+    }
+
+    .popular-searches a:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Statistics */
+
+    .stats {
+      margin-top: -30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 25px;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 5px 12px;
+    }
+
+    .stat + .stat {
+      border-left: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      color: var(--green);
+      line-height: 1.4;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* General sections */
+
+    .section {
+      padding: 76px 0 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(25px, 4vw, 34px);
+      letter-spacing: -1px;
+      line-height: 1.25;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 9px;
+    }
+
+    .text-link {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    /* Categories */
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px;
+    }
+
+    .category-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 23px 20px;
+      border-radius: 13px;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .category-icon {
+      width: 47px;
+      height: 47px;
+      border-radius: 12px;
+      background: var(--light-green);
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      margin-bottom: 16px;
+    }
+
+    .category-card h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .category-card p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Job listings */
+
+    .jobs-section {
+      padding-bottom: 78px;
+    }
+
+    .job-tools {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 15px;
+      background: white;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--light-green);
+      color: var(--green);
+      border-color: #b5d9c5;
+    }
+
+    .job-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .job-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 58px 1fr auto;
+      align-items: start;
+      gap: 18px;
+      transition: 0.2s ease;
+    }
+
+    .job-card:hover {
+      border-color: #b7d4c3;
+      box-shadow: var(--shadow);
+    }
+
+    .company-logo {
+      width: 55px;
+      height: 55px;
+      border-radius: 12px;
+      background: var(--light-green);
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .company-logo.orange {
+      background: #fff1db;
+      color: #a86408;
+    }
+
+    .company-logo.blue {
+      background: #e9f0ff;
+      color: #315eae;
+    }
+
+    .job-title {
+      font-size: 17px;
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .job-title a:hover {
+      color: var(--green);
+    }
+
+    .company-name {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 11px;
+    }
+
+    .job-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 15px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 13px;
+    }
+
+    .job-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag {
+      background: #f0f3f1;
+      color: #4d5a51;
+      border-radius: 5px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .tag.remote {
+      background: #e4f5eb;
+      color: #176442;
+    }
+
+    .job-side {
+      text-align: right;
+      min-width: 105px;
+    }
+
+    .save-job {
+      border: 1px solid var(--border);
+      width: 37px;
+      height: 37px;
+      border-radius: 9px;
+      background: white;
+      cursor: pointer;
+      font-size: 18px;
+      margin-bottom: 17px;
+    }
+
+    .save-job.saved {
+      color: var(--green);
+      background: var(--light-green);
+    }
+
+    .job-date {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .apply-link {
+      display: inline-block;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 12px;
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      color: var(--muted);
+      background: white;
+    }
+
+    .empty-state h3 {
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    /* Employer banner */
+
+    .employer-section {
+      padding: 0 0 78px;
+    }
+
+    .employer-banner {
+      background: linear-gradient(120deg, #123b2d, #1a6349);
+      border-radius: 18px;
+      padding: 43px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .employer-banner h2 {
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .employer-banner p {
+      max-width: 570px;
+      color: #dcebe3;
+      font-size: 14px;
+    }
+
+    .employer-banner .btn {
+      background: var(--orange);
+      color: #26372b;
+      flex-shrink: 0;
+    }
+
+    /* How it works */
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step-card {
+      padding: 25px;
+      border-radius: 13px;
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--light-green);
+      color: var(--green);
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .step-card h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* Footer */
+
+    footer {
+      background: #102f24;
+      color: white;
+      padding: 52px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 45px;
+      padding-bottom: 35px;
+    }
+
+    .footer-about p {
+      color: #bdcfc4;
+      font-size: 13px;
+      line-height: 1.9;
+      max-width: 340px;
+      margin-top: 17px;
+    }
+
+    .footer-title {
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 11px;
+      color: #bdcfc4;
+      font-size: 13px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding-top: 19px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      color: #bdcfc4;
+      font-size: 12px;
+    }
+
+    /* Toast */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 20px);
+      background: #123b2d;
+      color: white;
+      padding: 12px 19px;
+      border-radius: 9px;
+      font-size: 13px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s ease;
+      z-index: 200;
+      width: max-content;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 850px) {
+      .nav-links {
+        gap: 13px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .nav-actions .btn {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .job-card {
+        grid-template-columns: 48px 1fr;
+        gap: 14px;
+      }
+
+      .company-logo {
+        width: 47px;
+        height: 47px;
+      }
+
+      .job-side {
+        grid-column: 2;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        flex-wrap: wrap;
+      }
+
+      .save-job {
+        margin: 0;
+      }
+
+      .job-date {
+        display: none;
+      }
+
+      .apply-link {
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        min-height: 66px;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px 0;
+      }
+
+      .logo-name {
+        font-size: 20px;
+      }
+
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        padding: 9px 0 3px;
+        border-top: 1px solid var(--border);
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .nav-actions {
+        margin-left: auto;
+      }
+
+      .nav-actions .btn {
+        padding: 9px 10px;
+      }
+
+      .hero {
+        padding: 56px 0 70px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1.4px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .search-panel {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        margin-top: 27px;
+        padding: 12px;
+        border-radius: 12px;
+      }
+
+      .search-field {
+        min-height: 47px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .search-button {
+        margin-top: 6px;
+        width: 100%;
+      }
+
+      .popular-searches {
+        font-size: 12px;
+      }
+
+      .stats-grid {
+        padding: 18px 8px;
+      }
+
+      .stat {
+        padding: 3px 5px;
+      }
+
+      .stat strong {
+        font-size: 20px;
+      }
+
+      .stat span {
+        font-size: 10px;
+      }
+
+      .section {
+        padding-top: 57px;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .category-grid {
+        gap: 11px;
+      }
+
+      .category-card {
+        padding: 17px 14px;
+      }
+
+      .category-card h3 {
+        font-size: 13px;
+      }
+
+      .job-card {
+        padding: 17px;
+      }
+
+      .job-title {
+        font-size: 15px;
+      }
+
+      .job-meta {
+        gap: 7px 10px;
+      }
+
+      .employer-section {
+        padding-bottom: 57px;
+      }
+
+      .employer-banner {
+        padding: 28px 23px;
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+      }
+
+      .footer-about {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a class="logo" href="#" aria-label="Jobs Home homepage">
+        <span class="logo-icon">J</span>
+        <span class="logo-name">Jobs <span>Home</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#jobs">Find Jobs</a>
+        <a href="#categories">Categories</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#employers">For Employers</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#jobs" class="btn btn-outline">Explore Jobs</a>
+        <a href="#employers" class="btn btn-primary">Post a Job</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          YOUR NEXT OPPORTUNITY STARTS HERE
+        </div>
+
+        <h1>Find a job that moves <span>you forward.</span></h1>
+
+        <p class="hero-description">
+          Discover opportunities that match your skills, goals, and lifestyle.
+          Your next career opportunity could be closer than you think.
+        </p>
+
+        <form class="search-panel" id="searchForm">
+          <label class="search-field">
+            <span class="search-field-icon" aria-hidden="true">⌕</span>
+            <input
+              type="search"
+              id="keyword"
+              placeholder="Job title, keyword or company"
+              aria-label="Job title, keyword or company"
+            >
+          </label>
+
+          <label class="search-field">
+            <span class="search-field-icon" aria-hidden="true">⌖</span>
+            <select id="location" aria-label="Job location">
+              <option value="">All locations</option>
+              <option value="nigeria">Nigeria</option>
+              <option value="lagos">Lagos</option>
+              <option value="abuja">Abuja</option>
+              <option value="remote">Remote</option>
+              <option value="international">International</option>
+            </select>
+          </label>
+
+          <button class="btn btn-primary search-button" type="submit">
+            Search Jobs
+          </button>
+        </form>
+
+        <div class="popular-searches">
+          Popular searches:
+          <a href="#jobs" data-search="remote">Remote Jobs</a>
+          <a href="#jobs" data-search="marketing">Marketing</a>
+          <a href="#jobs" data-search="developer">Developer</a>
+          <a href="#jobs" data-search="internship">Internships</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats container" aria-label="Website information">
+      <div class="stats-grid">
+        <div class="stat">
+          <strong>Explore</strong>
+          <span>Career Opportunities</span>
+        </div>
+        <div class="stat">
+          <strong>Discover</strong>
+          <span>Companies and Employers</span>
+        </div>
+        <div class="stat">
+          <strong>Grow</strong>
+          <span>Your Professional Future</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="categories">
+      <div class="section-heading">
+        <div>
+          <div class="section-label">Explore Opportunities</div>
+          <h2>Find jobs by category</h2>
+          <p>Start with the field that matches your skills and interests.</p>
+        </div>
+      </div>
+
+      <div class="category-grid">
+        <a href="#jobs" class="category-card" data-category="technology">
+          <div class="category-icon">💻</div>
+          <h3>Technology</h3>
+          <p>Software, IT and digital skills</p>
+        </a>
+
+        <a href="#jobs" class="category-card" data-category="marketing">
+          <div class="category-icon">📈</div>
+          <h3>Marketing</h3>
+          <p>Content, sales and marketing</p>
+        </a>
+
+        <a href="#jobs" class="category-card" data-category="design">
+          <div class="category-icon">🎨</div>
+          <h3>Design & Creative</h3>
+          <p>Graphics, video and creative work</p>
+        </a>
+
+        <a href="#jobs" class="category-card" data-category="customer service">
+          <div class="category-icon">🎧</div>
+          <h3>Customer Service</h3>
+          <p>Support and client relations</p>
+        </a>
+
+        <a href="#jobs" class="category-card" data-category="finance">
+          <div class="category-icon">💼</div>
+          <h3>Finance & Business</h3>
+          <p>Accounts, operations and business</p>
+        </a>
+
+        <a href="#jobs" class="category-card" data-category="writing">
+          <div class="category-icon">✍️</div>
+          <h3>Writing & Content</h3>
+          <p>Copywriting, blogging and editing</p>
+        </a>
+
+        <a href="#jobs" class="category-card" data-category="internship">
+          <div class="category-icon">🎓</div>
+          <h3>Internships</h3>
+          <p>Learn, develop and gain experience</p>
+        </a>
+
+        <a href="#jobs" class="category-card" data-category="remote">
+          <div class="category-icon">🌍</div>
+          <h3>Remote Work</h3>
+          <p>Explore work-from-anywhere roles</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section jobs-section container" id="jobs">
+      <div class="section-heading">
+        <div>
+          <div class="section-label">Career Opportunities</div>
+          <h2>Explore job opportunities</h2>
+          <p>Search the sample listings below to explore the website design.</p>
+        </div>
+      </div>
+
+      <div class="job-tools" aria-label="Filter job listings">
+        <button class="filter-btn active" data-filter="all">All Jobs</button>
+        <button class="filter-btn" data-filter="remote">Remote</button>
+        <button class="filter-btn" data-filter="full-time">Full-time</button>
+        <button class="filter-btn" data-filter="part-time">Part-time</button>
+        <button class="filter-btn" data-filter="internship">Internships</button>
+      </div>
+
+      <div class="job-list" id="jobList">
+
+        <article class="job-card"
+          data-type="remote full-time"
+          data-category="technology"
+          data-location="remote international"
+          data-keywords="frontend developer software technology remote full-time">
+
+          <div class="company-logo">T</div>
+
+          <div class="job-main">
+            <h3 class="job-title">
+              <a href="#employers" class="sample-job-link">Frontend Developer</a>
+            </h3>
+            <p class="company-name">Technology Company · Sample Listing</p>
+            <div class="job-meta">
+              <span>🌍 Remote</span>
+              <span>◷ Full-time</span>
+              <span>💰 Salary not specified</span>
+            </div>
+            <div class="job-tags">
+              <span class="tag remote">Remote</span>
+              <span class="tag">Technology</span>
+              <span class="tag">Full-time</span>
+            </div>
+          </div>
+
+          <div class="job-side">
+            <button class="save-job" aria-label="Save Frontend Developer job" aria-pressed="false">♡</button>
+            <div class="job-date">Sample listing</div>
+            <a class="apply-link sample-job-link" href="#employers">View opportunity →</a>
+          </div>
+        </article>
+
+        <article class="job-card"
+          data-type="full-time"
+          data-category="marketing"
+          data-location="nigeria lagos"
+          data-keywords="digital marketer marketing social media lagos nigeria full-time">
+
+          <div class="company-logo orange">M</div>
+
+          <div class="job-main">
+            <h3 class="job-title">
+              <a href="#employers" class="sample-job-link">Digital Marketing Specialist</a>
+            </h3>
+            <p class="company-name">Marketing Agency · Sample Listing</p>
+            <div class="job-meta">
+              <span>📍 Lagos, Nigeria</span>
+              <span>◷ Full-time</span>
+              <span>💰 Salary not specified</span>
+            </div>
+            <div class="job-tags">
+              <span class="tag">Marketing</span>
+              <span class="tag">Full-time</span>
+            </div>
+          </div>
+
+          <div class="job-side">
+            <button class="save-job" aria-label="Save Digital Marketing Specialist job" aria-pressed="false">♡</button>
+            <div class="job-date">Sample listing</div>
+            <a class="apply-link sample-job-link" href="#employers">View opportunity →</a>
+          </div>
+        </article>
+
+        <article class="job-card"
+          data-type="remote part-time"
+          data-category="writing"
+          data-location="remote international"
+          data-keywords="content writer copywriter writing blogger remote part-time">
+
+          <div class="company-logo blue">W</div>
+
+          <div class="job-main">
+            <h3 class="job-title">
+              <a href="#employers" class="sample-job-link">Content Writer</a>
+            </h3>
+            <p class="company-name">Digital Media Company · Sample Listing</p>
+            <div class="job-meta">
+              <span>🌍 Remote</span>
+              <span>◷ Part-time</span>
+              <span>💰 Salary not specified</span>
+            </div>
+            <div class="job-tags">
+              <span class="tag remote">Remote</span>
+              <span class="tag">Writing</span>
+              <span class="tag">Part-time</span>
+            </div>
+          </div>
+
+          <div class="job-side">
+            <button class="save-job" aria-label="Save Content Writer job" aria-pressed="false">♡</button>
+            <div class="job-date">Sample listing</div>
+            <a class="apply-link sample-job-link" href="#employers">View opportunity →</a>
+          </div>
+        </article>
+
+        <article class="job-card"
+          data-type="internship"
+          data-category="design"
+          data-location="nigeria abuja"
+          data-keywords="graphic designer design creative internship abuja nigeria">
+
+          <div class="company-logo">C</div>
+
+          <div class="job-main">
+            <h3 class="job-title">
+              <a href="#employers" class="sample-job-link">Graphic Design Intern</a>
+            </h3>
+            <p class="company-name">Creative Studio · Sample Listing</p>
+            <div class="job-meta">
+              <span>📍 Abuja, Nigeria</span>
+              <span>◷ Internship</span>
+              <span>💰 Salary not specified</span>
+            </div>
+            <div class="job-tags">
+              <span class="tag">Design</span>
+              <span class="tag">Internship</span>
+            </div>
+          </div>
+
+          <div class="job-side">
+            <button class="save-job" aria-label="Save Graphic Design Intern job" aria-pressed="false">♡</button>
+            <div class="job-date">Sample listing</div>
+            <a class="apply-link sample-job-link" href="#employers">View opportunity →</a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="empty-state" id="emptyState">
+        <h3>No matching sample jobs found</h3>
+        <p>Try another keyword, location, or filter.</p>
+      </div>
+    </section>
+
+    <section class="container employer-section" id="employers">
+      <div class="employer-banner">
+        <div>
+          <div class="section-label" style="color:#ffca76">For Employers</div>
+          <h2>Find the right people for your team.</h2>
+          <p>
+            Connect with people looking for their next opportunity.
+            Employer job submission and account features will be added
+            as we develop the platform.
+          </p>
+        </div>
+
+        <a class="btn"
+           href="mailto:saheedhamza0@gmail.com?subject=Jobs%20Home%20Employer%20Enquiry">
+          Contact Us
+        </a>
+      </div>
+    </section>
+
+    <section class="section container" id="how-it-works" style="padding-bottom:78px">
+      <div class="section-heading">
+        <div>
+          <div class="section-label">Simple Steps</div>
+          <h2>Your next opportunity starts here</h2>
+          <p>A simple way to begin exploring career opportunities.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <article class="step-card">
+          <div class="step-number">01</div>
+          <h3>Explore Opportunities</h3>
+          <p>Search for roles that match your skills, interests, and career goals.</p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">02</div>
+          <h3>Review Job Details</h3>
+          <p>Read job descriptions, requirements, locations, and application instructions.</p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">03</div>
+          <h3>Apply with Confidence</h3>
+          <p>Follow the employer's verified application instructions when a real vacancy is available.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-about">
+          <a class="logo" href="#" style="color:white">
+            <span class="logo-icon" style="background:#ffb547;color:#123b2d">J</span>
+            <span class="logo-name">Jobs <span style="color:#ffb547">Home</span></span>
+          </a>
+
+          <p>
+            A place to explore career opportunities, discover employers,
+            and take the next step in your professional journey.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-title">Explore</h3>
+          <div class="footer-links">
+            <a href="#jobs">Find Jobs</a>
+            <a href="#categories">Job Categories</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#employers">For Employers</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-title">Contact & Information</h3>
+          <div class="footer-links">
+            <a href="mailto:saheedhamza0@gmail.com">Email Jobs Home</a>
+            <a href="mailto:saheedhamza0@gmail.com?subject=Employer%20Enquiry">Employer Enquiries</a>
+            <a href="#jobs">Job Opportunities</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> Jobs Home. All rights reserved.</span>
+        <a href="mailto:saheedhamza0@gmail.com" style="color:#bdcfc4">
+          saheedhamza0@gmail.com
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const searchForm = document.getElementById("searchForm");
+    const keywordInput = document.getElementById("keyword");
+    const locationInput = document.getElementById("location");
+    const jobCards = [...document.querySelectorAll(".job-card")];
+    const filterButtons = [...document.querySelectorAll(".filter-btn")];
+    const emptyState = document.getElementById("emptyState");
+    const toast = document.getElementById("toast");
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    let selectedFilter = "all";
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2800);
+    }
+
+    function filterJobs() {
+      const keyword = keywordInput.value.trim().toLowerCase();
+      const location = locationInput.value.toLowerCase();
+      let visibleCount = 0;
+
+      jobCards.forEach(card => {
+        const searchableText = (
+          card.innerText + " " +
+          card.dataset.keywords + " " +
+          card.dataset.category + " " +
+          card.dataset.location
+        ).toLowerCase();
+
+        const types = (card.dataset.type || "").toLowerCase();
+        const locations = (card.dataset.location || "").toLowerCase();
+
+        const matchesKeyword =
+          !keyword || searchableText.includes(keyword);
+
+        const matchesLocation =
+          !location || locations.includes(location);
+
+        const matchesFilter =
+          selectedFilter === "all" ||
+          types.split(" ").includes(selectedFilter);
+
+        const matches =
+          matchesKeyword && matchesLocation && matchesFilter;
+
+        card.style.display = matches ? "grid" : "none";
+
+        if (matches) visibleCount++;
+      });
+
+      emptyState.style.display = visibleCount ? "none" : "block";
+    }
+
+    searchForm.addEventListener("submit", event => {
+      event.preventDefault();
+      filterJobs();
+
+      document.getElementById("jobs").scrollIntoView({
+        behavior: "smooth"
+      });
+
+      showToast("Showing matching sample listings.");
+    });
+
+    keywordInput.addEventListener("input", filterJobs);
+    locationInput.addEventListener("change", filterJobs);
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        selectedFilter = button.dataset.filter;
+
+        filterButtons.forEach(item => {
+          item.classList.toggle("active", item === button);
+        });
+
+        filterJobs();
+      });
+    });
+
+    document.querySelectorAll("[data-search]").forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+
+        keywordInput.value = link.dataset.search;
+        selectedFilter = "all";
+
+        filterButtons.forEach(button => {
+          button.classList.toggle(
+            "active",
+            button.dataset.filter === "all"
+          );
+        });
+
+        filterJobs();
+
+        document.getElementById("jobs").scrollIntoView({
+          behavior: "smooth"
+        });
+      });
+    });
+
+    document.querySelectorAll("[data-category]").forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+
+        keywordInput.value = link.dataset.category;
+        locationInput.value = "";
+        selectedFilter = "all";
+
+        filterButtons.forEach(button => {
+          button.classList.toggle(
+            "active",
+            button.dataset.filter === "all"
+          );
+        });
+
+        filterJobs();
+
+        document.getElementById("jobs").scrollIntoView({
+          behavior: "smooth"
+        });
+      });
+    });
+
+    document.querySelectorAll(".save-job").forEach(button => {
+      button.addEventListener("click", () => {
+        const saved = button.classList.toggle("saved");
+
+        button.textContent = saved ? "♥" : "♡";
+        button.setAttribute("aria-pressed", String(saved));
+
+        showToast(
+          saved
+            ? "Saved for this browsing session."
+            : "Removed from saved sample jobs."
+        );
+      });
+    });
+
+    document.querySelectorAll(".sample-job-link").forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+
+        showToast(
+          "This is a sample listing. Real job details and applications will be connected in a later development stage."
+        );
+      });
+    });
+  </script>
+
+</body>
+</html>
